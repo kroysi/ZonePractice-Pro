@@ -39,7 +39,7 @@
                         </goals>
                         <configuration>
                             <shadedArtifactAttached>false</shadedArtifactAttached>
-                            <outputFile>/Users/dukatnandor/Dokumentumok/Munka/MC/Plugins/ZonePractice/Pro/Test Servers/Main/Server_${build.path.version}/plugins/${project.build.finalName}.jar</outputFile>
+                            <outputFile>${project.build.finalName}.jar</outputFile>
 
                             <createDependencyReducedPom>false</createDependencyReducedPom>
 
