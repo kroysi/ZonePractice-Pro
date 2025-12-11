@@ -1,4 +1,4 @@
-package dev.nandi0813.practice.Manager.GUI.Setup.Ladder.LadderSettings.Settings.Items.Knockback;
+package dev.nandi0813.practice.Manager.GUI.Setup.Ladder.LadderSettings.Settings.Items;
 
 import dev.nandi0813.practice.Manager.Backend.GUIFile;
 import dev.nandi0813.practice.Manager.GUI.GUIItem;

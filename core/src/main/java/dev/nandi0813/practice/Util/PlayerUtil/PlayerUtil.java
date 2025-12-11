@@ -1,19 +1,15 @@
 package dev.nandi0813.practice.Util.PlayerUtil;
 
 import dev.nandi0813.practice.Manager.Backend.LanguageManager;
-import dev.nandi0813.practice.Manager.Ladder.Abstraction.Ladder;
 import dev.nandi0813.practice.Manager.Profile.Profile;
 import dev.nandi0813.practice.Manager.Profile.ProfileManager;
 import dev.nandi0813.practice.Module.Util.ClassImport;
 import dev.nandi0813.practice.Util.Common;
-import dev.nandi0813.practice.Util.Forks.FoxSpigotUtil;
 import dev.nandi0813.practice.ZonePractice;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-import pt.foxspigot.jar.knockback.KnockbackModule;
-import xyz.refinedev.spigot.api.knockback.KnockbackAPI;
 
 import java.util.*;
 
@@ -38,33 +34,12 @@ public enum PlayerUtil {
         for (PotionEffect potionEffect : player.getActivePotionEffects())
             player.removePotionEffect(potionEffect.getType());
 
-        switch (ZonePractice.getKnockbackController()) {
-            case CARBON:
-                KnockbackAPI.getInstance().setPlayerProfile(player, KnockbackAPI.getInstance().getDefaultProfile());
-                break;
-            case FOX_SPIGOT:
-                FoxSpigotUtil.setKnockbackProfile(player, KnockbackModule.getDefault());
-                break;
-            default:
-                player.setNoDamageTicks(20);
-                break;
-        }
+        player.setNoDamageTicks(20);
     }
 
-    public static void setMatchPlayer(Player player, Ladder ladder) {
+    public static void setMatchPlayer(Player player) {
         setFightPlayer(player);
-
-        switch (ZonePractice.getKnockbackController()) {
-            case CARBON:
-                KnockbackAPI.getInstance().setPlayerProfile(player, ladder.getLadderKnockback().getCarbonKnockbackProfile());
-                break;
-            case FOX_SPIGOT:
-                FoxSpigotUtil.setKnockbackProfile(player, ladder.getLadderKnockback().getFoxspigotKnockbackProfile());
-                break;
-            default:
-                player.setNoDamageTicks(20);
-                break;
-        }
+        player.setNoDamageTicks(20);
     }
 
     public static void setFightPlayer(Player player) {

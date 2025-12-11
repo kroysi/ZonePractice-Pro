@@ -6,9 +6,6 @@ import dev.nandi0813.practice.Manager.GUI.GUI;
 import dev.nandi0813.practice.Manager.GUI.GUIManager;
 import dev.nandi0813.practice.Manager.GUI.GUIType;
 import dev.nandi0813.practice.Manager.GUI.Setup.Ladder.LadderSettings.Settings.Items.*;
-import dev.nandi0813.practice.Manager.GUI.Setup.Ladder.LadderSettings.Settings.Items.Knockback.CarbonKnockbackItem;
-import dev.nandi0813.practice.Manager.GUI.Setup.Ladder.LadderSettings.Settings.Items.Knockback.FoxSpigotKnockbackItem;
-import dev.nandi0813.practice.Manager.GUI.Setup.Ladder.LadderSettings.Settings.Items.Knockback.KnockbackItem;
 import dev.nandi0813.practice.Manager.GUI.Setup.Ladder.LadderSetupManager;
 import dev.nandi0813.practice.Manager.Ladder.Abstraction.Normal.NormalLadder;
 import dev.nandi0813.practice.Manager.Ladder.Enum.LadderType;
@@ -16,7 +13,6 @@ import dev.nandi0813.practice.Manager.Ladder.Type.Boxing;
 import dev.nandi0813.practice.Manager.Ladder.Type.SkyWars;
 import dev.nandi0813.practice.Util.Common;
 import dev.nandi0813.practice.Util.InventoryUtil;
-import dev.nandi0813.practice.ZonePractice;
 import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -165,19 +161,8 @@ public class SettingsGui extends GUI {
         if (settingTypes.contains(SettingType.HIT_DELAY))
             settingItems.add(new HitdelayItem(this, ladder));
 
-        if (settingTypes.contains(SettingType.KNOCKBACK)) {
-            switch (ZonePractice.getKnockbackController()) {
-                case CARBON:
-                    settingItems.add(new CarbonKnockbackItem(this, ladder));
-                    break;
-                case FOX_SPIGOT:
-                    settingItems.add(new FoxSpigotKnockbackItem(this, ladder));
-                    break;
-                default:
-                    settingItems.add(new KnockbackItem(this, ladder));
-                    break;
-            }
-        }
+        if (settingTypes.contains(SettingType.KNOCKBACK))
+            settingItems.add(new KnockbackItem(this, ladder));
 
         if (settingTypes.contains(SettingType.START_COUNTDOWN))
             settingItems.add(new StartCountdownItem(this, ladder));

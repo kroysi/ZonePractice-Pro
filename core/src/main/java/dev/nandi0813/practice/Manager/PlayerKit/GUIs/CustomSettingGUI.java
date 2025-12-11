@@ -8,8 +8,6 @@ import dev.nandi0813.practice.Manager.Ladder.Abstraction.PlayerCustom.CustomLadd
 import dev.nandi0813.practice.Manager.Ladder.Enum.KnockbackType;
 import dev.nandi0813.practice.Manager.PlayerKit.PlayerKitManager;
 import dev.nandi0813.practice.Manager.PlayerKit.StaticItems;
-import dev.nandi0813.practice.Util.Forks.CarbonUtil;
-import dev.nandi0813.practice.Util.Forks.FoxSpigotUtil;
 import dev.nandi0813.practice.Util.InventoryUtil;
 import dev.nandi0813.practice.ZonePractice;
 import org.apache.commons.lang3.StringUtils;
@@ -19,9 +17,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pt.foxspigot.jar.knockback.KnockbackModule;
-import xyz.refinedev.spigot.api.knockback.KnockbackAPI;
-import xyz.refinedev.spigot.knockback.KnockbackProfile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,33 +130,11 @@ public class CustomSettingGUI extends GUI {
         List<String> extension = new ArrayList<>();
         List<String> lore = new ArrayList<>();
 
-        switch (ZonePractice.getKnockbackController()) {
-            case DEFAULT:
-                for (KnockbackType kt : KnockbackType.values()) {
-                    String ktName = StringUtils.capitalize(kt.name().toLowerCase());
+        for (KnockbackType kt : KnockbackType.values()) {
+            String ktName = StringUtils.capitalize(kt.name().toLowerCase());
 
-                    if (ladder.getLadderKnockback().getKnockbackType().equals(kt)) extension.add(" &a» " + ktName);
-                    else extension.add(" &7» " + ktName);
-                }
-                break;
-            case CARBON:
-                for (KnockbackProfile kt : KnockbackAPI.getInstance().getProfiles()) {
-                    String ktName = StringUtils.capitalize(kt.getName().toLowerCase());
-
-                    if (ladder.getLadderKnockback().getCarbonKnockbackProfile().equals(kt))
-                        extension.add(" &a» " + ktName);
-                    else extension.add(" &7» " + ktName);
-                }
-                break;
-            case FOX_SPIGOT:
-                for (pt.foxspigot.jar.knockback.KnockbackProfile kt : KnockbackModule.INSTANCE.profiles.values()) {
-                    String ktName = StringUtils.capitalize(kt.title.toLowerCase());
-
-                    if (ladder.getLadderKnockback().getFoxspigotKnockbackProfile().equals(kt))
-                        extension.add(" &a» " + ktName);
-                    else extension.add(" &7» " + ktName);
-                }
-                break;
+            if (ladder.getLadderKnockback().getKnockbackType().equals(kt)) extension.add(" &a» " + ktName);
+            else extension.add(" &7» " + ktName);
         }
 
         for (String line : guiItem.getLore()) {
@@ -176,25 +149,15 @@ public class CustomSettingGUI extends GUI {
     }
 
     private static void setKnockback(CustomLadder ladder) {
-        switch (ZonePractice.getKnockbackController()) {
+        switch (ladder.getLadderKnockback().getKnockbackType()) {
             case DEFAULT:
-                switch (ladder.getLadderKnockback().getKnockbackType()) {
-                    case DEFAULT:
-                        ladder.getLadderKnockback().setKnockbackType(KnockbackType.NORMAL);
-                        break;
-                    case NORMAL:
-                        ladder.getLadderKnockback().setKnockbackType(KnockbackType.COMBO);
-                        break;
-                    case COMBO:
-                        ladder.getLadderKnockback().setKnockbackType(KnockbackType.DEFAULT);
-                        break;
-                }
+                ladder.getLadderKnockback().setKnockbackType(KnockbackType.NORMAL);
                 break;
-            case CARBON:
-                ladder.getLadderKnockback().setCarbonKnockbackProfile(CarbonUtil.getNextKnockbackProfile(ladder.getLadderKnockback().getCarbonKnockbackProfile()));
+            case NORMAL:
+                ladder.getLadderKnockback().setKnockbackType(KnockbackType.COMBO);
                 break;
-            case FOX_SPIGOT:
-                ladder.getLadderKnockback().setFoxspigotKnockbackProfile(FoxSpigotUtil.getNextKnockbackProfile(ladder.getLadderKnockback().getFoxspigotKnockbackProfile()));
+            case COMBO:
+                ladder.getLadderKnockback().setKnockbackType(KnockbackType.DEFAULT);
                 break;
         }
     }

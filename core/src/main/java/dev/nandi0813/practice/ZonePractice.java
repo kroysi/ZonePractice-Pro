@@ -34,7 +34,6 @@ import dev.nandi0813.practice.Manager.Fight.Util.EntityHiderListener;
 import dev.nandi0813.practice.Manager.GUI.Setup.Arena.ArenaSetupManager;
 import dev.nandi0813.practice.Manager.Inventory.InventoryManager;
 import dev.nandi0813.practice.Manager.Ladder.Abstraction.Ladder;
-import dev.nandi0813.practice.Manager.Ladder.Enum.KnockbackController;
 import dev.nandi0813.practice.Manager.Ladder.LadderManager;
 import dev.nandi0813.practice.Manager.Leaderboard.Hologram.HologramManager;
 import dev.nandi0813.practice.Manager.Leaderboard.LeaderboardManager;
@@ -45,7 +44,6 @@ import dev.nandi0813.practice.Manager.Server.ServerManager;
 import dev.nandi0813.practice.Manager.Sidebar.SidebarManager;
 import dev.nandi0813.practice.Module.Util.VersionChecker;
 import dev.nandi0813.practice.Util.*;
-import dev.nandi0813.practice.Util.Forks.ForkUtil;
 import dev.nandi0813.practice.Util.PlaceholderAPI.PlayerExpansion;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
@@ -70,23 +68,7 @@ public final class ZonePractice extends JavaPlugin {
     @Getter
     private static BukkitAudiences adventure;
 
-    @Getter
-    private static KnockbackController knockbackController;
-
     private Metrics metrics;
-
-    static {
-        try {
-            if (ForkUtil.isCarbon())
-                knockbackController = KnockbackController.CARBON;
-            else if (ForkUtil.isFoxSpigot())
-                knockbackController = KnockbackController.FOX_SPIGOT;
-            else
-                knockbackController = KnockbackController.DEFAULT;
-        } catch (Exception e) {
-            knockbackController = KnockbackController.DEFAULT;
-        }
-    }
 
     @Override
     public void onLoad() {

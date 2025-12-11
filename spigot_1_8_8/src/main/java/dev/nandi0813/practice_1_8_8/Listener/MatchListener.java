@@ -11,12 +11,10 @@ import dev.nandi0813.practice.Manager.Fight.Util.FightUtil;
 import dev.nandi0813.practice.Manager.Fight.Util.ListenerUtil;
 import dev.nandi0813.practice.Manager.Fight.Util.Stats.Statistic;
 import dev.nandi0813.practice.Manager.Ladder.Abstraction.Interface.LadderHandle;
-import dev.nandi0813.practice.Manager.Ladder.Enum.KnockbackController;
 import dev.nandi0813.practice.Manager.Ladder.Enum.KnockbackType;
 import dev.nandi0813.practice.Manager.Profile.Enum.ProfileStatus;
 import dev.nandi0813.practice.Manager.Profile.Profile;
 import dev.nandi0813.practice.Manager.Profile.ProfileManager;
-import dev.nandi0813.practice.ZonePractice;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -121,10 +119,8 @@ public class MatchListener extends LadderTypeListener implements Listener {
             }
         }
 
-        if (ZonePractice.getKnockbackController().equals(KnockbackController.DEFAULT)) {
-            if (!e.isCancelled() && !match.getLadder().getLadderKnockback().getKnockbackType().equals(KnockbackType.DEFAULT)) {
-                KnockbackUtil.setPlayerKnockback(target, match.getLadder().getLadderKnockback().getKnockbackType());
-            }
+        if (!e.isCancelled() && !match.getLadder().getLadderKnockback().getKnockbackType().equals(KnockbackType.DEFAULT)) {
+            KnockbackUtil.setPlayerKnockback(target, match.getLadder().getLadderKnockback().getKnockbackType());
         }
     }
 
