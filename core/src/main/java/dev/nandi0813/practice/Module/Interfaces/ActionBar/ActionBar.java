@@ -1,10 +1,10 @@
 package dev.nandi0813.practice.Module.Interfaces.ActionBar;
 
 import dev.nandi0813.practice.Manager.Profile.Profile;
+import dev.nandi0813.practice.ZonePractice;
 import lombok.Getter;
 import lombok.Setter;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 
 @Getter
 public abstract class ActionBar {
@@ -79,7 +79,7 @@ public abstract class ActionBar {
     }
 
     public void setMessage(final String message) {
-        this.message = MiniMessage.miniMessage().deserialize(message);
+        this.message = ZonePractice.getMiniMessage().deserialize(message);
     }
 
 }

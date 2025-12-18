@@ -1,8 +1,8 @@
 package dev.nandi0813.practice.Manager.Division;
 
+import dev.nandi0813.practice.ZonePractice;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -48,11 +48,11 @@ public class Division {
     }
 
     public Component getComponentFullName() {
-        return MiniMessage.miniMessage().deserialize(fullName);
+        return ZonePractice.getMiniMessage().deserialize(fullName);
     }
 
     public Component getComponentShortName() {
-        return MiniMessage.miniMessage().deserialize(shortName);
+        return ZonePractice.getMiniMessage().deserialize(shortName);
     }
 
 }

@@ -1,8 +1,8 @@
 package dev.nandi0813.practice.Util;
 
+import dev.nandi0813.practice.ZonePractice;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 
 public enum PAPIUtil {
@@ -14,10 +14,10 @@ public enum PAPIUtil {
         }
 
         if (SoftDependUtil.isPAPI_ENABLED) {
-            return MiniMessage.miniMessage().deserialize(PlaceholderAPI.setPlaceholders(player, line));
+            return ZonePractice.getMiniMessage().deserialize(PlaceholderAPI.setPlaceholders(player, line));
         }
 
-        return MiniMessage.miniMessage().deserialize(line);
+        return ZonePractice.getMiniMessage().deserialize(line);
     }
 
 }

@@ -48,6 +48,7 @@ import dev.nandi0813.practice.Util.PlaceholderAPI.PlayerExpansion;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -67,6 +68,8 @@ public final class ZonePractice extends JavaPlugin {
     private static ZonePractice instance;
     @Getter
     private static BukkitAudiences adventure;
+    @Getter
+    private static MiniMessage miniMessage;
 
     private Metrics metrics;
 
@@ -80,6 +83,7 @@ public final class ZonePractice extends JavaPlugin {
     public void onEnable() {
         instance = this;
         adventure = BukkitAudiences.create(this);
+        miniMessage = MiniMessage.miniMessage();
         PacketEvents.getAPI().init();
         metrics = new Metrics(this, 16055);
 

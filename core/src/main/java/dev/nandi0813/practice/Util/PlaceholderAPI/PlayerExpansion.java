@@ -14,8 +14,8 @@ import dev.nandi0813.practice.Manager.Profile.Group.Group;
 import dev.nandi0813.practice.Manager.Profile.Profile;
 import dev.nandi0813.practice.Manager.Profile.ProfileManager;
 import dev.nandi0813.practice.Manager.Queue.QueueManager;
+import dev.nandi0813.practice.ZonePractice;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 
@@ -65,10 +65,10 @@ public class PlayerExpansion extends PlaceholderExpansion {
                         if (input.length == 2) return group.getDisplayName();
                         break;
                     case "prefix":
-                        if (input.length == 2) return MiniMessage.miniMessage().serialize(group.getPrefix());
+                        if (input.length == 2) return ZonePractice.getMiniMessage().serialize(group.getPrefix());
                         break;
                     case "suffix":
-                        if (input.length == 2) return MiniMessage.miniMessage().serialize(group.getSuffix());
+                        if (input.length == 2) return ZonePractice.getMiniMessage().serialize(group.getSuffix());
                         break;
                     case "limit":
                         if (input.length == 2) return null;

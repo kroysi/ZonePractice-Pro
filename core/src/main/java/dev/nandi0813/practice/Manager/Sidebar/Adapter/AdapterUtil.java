@@ -12,9 +12,9 @@ import dev.nandi0813.practice.Manager.Fight.Match.Util.TeamUtil;
 import dev.nandi0813.practice.Manager.Fight.Util.Stats.Statistic;
 import dev.nandi0813.practice.Manager.Sidebar.SidebarManager;
 import dev.nandi0813.practice.Module.Util.ClassImport;
+import dev.nandi0813.practice.ZonePractice;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 
 public enum AdapterUtil {
@@ -37,7 +37,7 @@ public enum AdapterUtil {
                     string = string.concat(ROUND_SYMBOL);
             }
         }
-        return MiniMessage.miniMessage().deserialize(string);
+        return ZonePractice.getMiniMessage().deserialize(string);
     }
 
     public static Component replaceMatchPlaceholders(Player player, Component line, Match match) {

@@ -5,10 +5,10 @@ import dev.nandi0813.practice.Manager.Profile.Profile;
 import dev.nandi0813.practice.Manager.Profile.ProfileManager;
 import dev.nandi0813.practice.Manager.Sidebar.SidebarManager;
 import dev.nandi0813.practice.Util.Common;
+import dev.nandi0813.practice.ZonePractice;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class GroupManager extends ConfigFile {
             List<Component> sidebarExtension = new ArrayList<>();
             if (SidebarManager.getInstance().isList("GROUP-EXTENSIONS." + groupName)) {
                 for (String line : SidebarManager.getInstance().getList("GROUP-EXTENSIONS." + groupName)) {
-                    sidebarExtension.add(MiniMessage.miniMessage().deserialize(line));
+                    sidebarExtension.add(ZonePractice.getMiniMessage().deserialize(line));
                 }
             }
 
@@ -55,9 +55,9 @@ public class GroupManager extends ConfigFile {
                     this.getInt("GROUPS." + groupName + ".EVENT-START-PER-DAY"),
                     this.getInt("GROUPS." + groupName + ".CUSTOM-KIT"),
                     this.getInt("GROUPS." + groupName + ".MODIFIABLE-KIT-PER-LADDER"),
-                    MiniMessage.miniMessage().deserialize(this.getString("GROUPS." + groupName + ".LOBBY-NAMETAG.PREFIX")),
+                    ZonePractice.getMiniMessage().deserialize(this.getString("GROUPS." + groupName + ".LOBBY-NAMETAG.PREFIX")),
                     NamedTextColor.NAMES.valueOr(this.getString("GROUPS." + groupName + ".LOBBY-NAMETAG.NAME-COLOR").toLowerCase(), NamedTextColor.WHITE),
-                    MiniMessage.miniMessage().deserialize(this.getString("GROUPS." + groupName + ".LOBBY-NAMETAG.SUFFIX")),
+                    ZonePractice.getMiniMessage().deserialize(this.getString("GROUPS." + groupName + ".LOBBY-NAMETAG.SUFFIX")),
                     this.getInt("GROUPS." + groupName + ".LOBBY-NAMETAG.SORT-PRIORITY"),
                     chatFormat,
                     sidebarExtension);

@@ -1,17 +1,14 @@
 package dev.nandi0813.practice.Listener;
 
 import dev.nandi0813.practice.Manager.Backend.ConfigManager;
-import dev.nandi0813.practice.Manager.Backend.LanguageManager;
 import dev.nandi0813.practice.Manager.Inventory.InventoryManager;
 import dev.nandi0813.practice.Manager.PlayerDisplay.Nametag.NametagManager;
 import dev.nandi0813.practice.Manager.Profile.Enum.ProfileStatus;
 import dev.nandi0813.practice.Manager.Profile.Profile;
 import dev.nandi0813.practice.Manager.Profile.ProfileManager;
 import dev.nandi0813.practice.Manager.Sidebar.SidebarManager;
-import dev.nandi0813.practice.Util.Common;
 import dev.nandi0813.practice.Util.PermanentConfig;
 import dev.nandi0813.practice.Util.PlayerUtil.PlayerUtil;
-import dev.nandi0813.practice.Util.StartUpUtil;
 import dev.nandi0813.practice.ZonePractice;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -19,17 +16,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 
 import java.util.UUID;
 
 public class PlayerJoin implements Listener {
-
-    @EventHandler ( priority = EventPriority.MONITOR, ignoreCancelled = true )
-    public void preLogin(PlayerLoginEvent e) {
-        if (!StartUpUtil.isStartUpReady())
-            e.disallow(PlayerLoginEvent.Result.KICK_OTHER, Common.mmToNormal(LanguageManager.getString("STARTUP-NOT-READY")));
-    }
 
     @EventHandler ( priority = EventPriority.HIGHEST )
     public void onPlayerJoin(PlayerJoinEvent e) {

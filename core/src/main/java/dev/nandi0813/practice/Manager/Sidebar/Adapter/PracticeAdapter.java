@@ -40,9 +40,9 @@ import dev.nandi0813.practice.Manager.Spectator.SpectatorManager;
 import dev.nandi0813.practice.Util.Interface.Spectatable;
 import dev.nandi0813.practice.Util.PAPIUtil;
 import dev.nandi0813.practice.Util.TPSUtil;
+import dev.nandi0813.practice.ZonePractice;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -162,15 +162,15 @@ public class PracticeAdapter implements SidebarAdapter {
                                         int overAllHits = playerHits - enemyHits;
 
                                         component = component
-                                                .replaceText(TextReplacementConfig.builder().matchLiteral("%overAllHits%").replacement(MiniMessage.miniMessage().deserialize((overAllHits < 0 ? "<red>" : "<green>")).append(Component.text(overAllHits))).build())
+                                                .replaceText(TextReplacementConfig.builder().matchLiteral("%overAllHits%").replacement(ZonePractice.getMiniMessage().deserialize((overAllHits < 0 ? "<red>" : "<green>")).append(Component.text(overAllHits))).build())
                                                 .replaceText(TextReplacementConfig.builder().matchLiteral("%hits%").replacement(String.valueOf(playerHits)).build())
                                                 .replaceText(TextReplacementConfig.builder().matchLiteral("%enemyHits%").replacement(String.valueOf(enemyHits)).build());
                                         break;
                                     case BEDWARS:
                                     case FIREBALL_FIGHT:
                                         component = component
-                                                .replaceText(TextReplacementConfig.builder().matchLiteral("%playerBedStatus%").replacement(MiniMessage.miniMessage().deserialize(round != null && round.getBedStatus().get(duel.getTeam(player)) ? config.getString("MATCH.BED-STATUS.NOT-DESTROYED") : config.getString("MATCH.BED-STATUS.DESTROYED"))).build())
-                                                .replaceText(TextReplacementConfig.builder().matchLiteral("%enemyBedStatus%").replacement(MiniMessage.miniMessage().deserialize(round != null && round.getBedStatus().get(duel.getTeam(enemy)) ? config.getString("MATCH.BED-STATUS.NOT-DESTROYED") : config.getString("MATCH.BED-STATUS.DESTROYED"))).build());
+                                                .replaceText(TextReplacementConfig.builder().matchLiteral("%playerBedStatus%").replacement(ZonePractice.getMiniMessage().deserialize(round != null && round.getBedStatus().get(duel.getTeam(player)) ? config.getString("MATCH.BED-STATUS.NOT-DESTROYED") : config.getString("MATCH.BED-STATUS.DESTROYED"))).build())
+                                                .replaceText(TextReplacementConfig.builder().matchLiteral("%enemyBedStatus%").replacement(ZonePractice.getMiniMessage().deserialize(round != null && round.getBedStatus().get(duel.getTeam(enemy)) ? config.getString("MATCH.BED-STATUS.NOT-DESTROYED") : config.getString("MATCH.BED-STATUS.DESTROYED"))).build());
                                         break;
                                 }
 
@@ -186,8 +186,8 @@ public class PracticeAdapter implements SidebarAdapter {
                                 if (ladderType == LadderType.BOXING) {
                                     for (int i = 1; i <= 3; i++) {
                                         Player topPlayer = MatchUtil.getBoxingTopPlayer(partyFFA, i);
-                                        Component playerName = topPlayer != null ? Component.text(topPlayer.getName()) : MiniMessage.miniMessage().deserialize("<red>N/A");
-                                        Component playerHits = topPlayer != null ? Component.text(match.getCurrentStat(topPlayer).getHit()) : MiniMessage.miniMessage().deserialize("<red>N/A");
+                                        Component playerName = topPlayer != null ? Component.text(topPlayer.getName()) : ZonePractice.getMiniMessage().deserialize("<red>N/A");
+                                        Component playerHits = topPlayer != null ? Component.text(match.getCurrentStat(topPlayer).getHit()) : ZonePractice.getMiniMessage().deserialize("<red>N/A");
 
                                         component = component
                                                 .replaceText(TextReplacementConfig.builder().matchLiteral("%player" + i + "boxing%").replacement(playerName).build())
